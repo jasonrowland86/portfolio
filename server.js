@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');]
+const path = require('path');
 const bodyParser = require('body-parser');
 const request = require('request');
 
@@ -48,7 +48,7 @@ app.post('/', (req, res) => {
         from: req.body.email,
         to: 'jasonrowland86@gmail.com',
         subject: 'Contact Form Submitted: ' + req.body.firstName + " " + req.body.lastName,
-        text: req.body.message 
+        text: req.body.message
       };
       nodemailer.transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
