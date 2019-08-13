@@ -31,16 +31,30 @@ class Work extends React.Component {
     return(
       <div style={this.state.workSection} className="work-section">
         {projects.map((project) =>(
-          <div className="project-preview">
-            <div className="project-preview-description">
-              <div className="project-title"><h1>{project.data.name}</h1></div>
-              <div className="project-description"><p>{project.data.description}</p></div>
-              <div className="project-skills"><h2>{project.data.technologies}</h2></div>
-              <div className="project-link" id="#FFE69E" label={project.data.name} onClick={this.props.handleProjectView}>View</div>
+          <div key={project.data.name} className="project-preview" id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView}>
+
+            <div className='overlay' id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView}>
+              <div className="project-preview-title" id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView}>
+                <h1 id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView}>{project.data.name}</h1>
+                <h2 id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView} className="overlay-h2">{project.data.technologies}</h2>
+              </div>
+
+              <div className="project-preview-image" id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView}>
+                <img id="#EDFD5D" label={project.data.name} onClick={this.props.handleProjectView} className="overlay-img" src={project.data.images[0]} alt=""></img>
+              </div>
             </div>
-            <div className="project-preview-image">
-              <img src={project.data.images[0]} id="#FFE69E" label={project.data.name} onClick={this.props.handleProjectView}></img>
+
+            <div className='under'>
+              <div className="project-preview-title">
+                <h1>{project.data.name}</h1>
+                <h2>{project.data.technologies}</h2>
+              </div>
+
+              <div className="project-preview-image">
+                <img src={project.data.images[0]} alt=""></img>
+              </div>
             </div>
+
           </div>
         ))}
       </div>

@@ -12,6 +12,21 @@ class Content extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   this.fadeIn();
+  // }
+  //
+  // fadeIn() {
+  //   setTimeout(() => {
+  //     this.setState({
+  //       contentSection: {
+  //         opacity: 1,
+  //         transition: "all .3s ease-in"
+  //       }
+  //     })
+  //   }, 150);
+  // }
+
   handleContent() {
     if (this.props.globalState.label === "work") {
       return <Work handleProjectView={this.props.handleProjectView}/>
@@ -21,12 +36,12 @@ class Content extends React.Component {
       return <Contact />
     } else if (this.props.globalState.label !== "contact" && this.props.globalState.label !== "about" && this.props.globalState.label !== "work" && this.props.globalState.label !== "web developer") {
       console.log('project!');
-      return <Project project={this.props.globalState.label}/>
+      return <Project project={this.props.globalState.label} globalState={this.props.globalState}/>
     }
   }
 
   render() {
-    if(this.props.globalState.landing) {
+    if (this.props.globalState.landing) {
       return(
         <div></div>
       )

@@ -1,8 +1,8 @@
 import React from 'react';
-import {
-  GoogleReCaptchaProvider,
-  GoogleReCaptcha
-} from 'react-google-recaptcha-v3';
+// import {
+//   GoogleReCaptchaProvider,
+//   GoogleReCaptcha
+// } from 'react-google-recaptcha-v3';
 
 class Contact extends React.Component {
   constructor() {
@@ -30,48 +30,33 @@ class Contact extends React.Component {
     }, 150);
   }
 
+  handleSubmit(e) {
+    console.log('handle submit');
+    // e.preventDefault();
+    // let data = this.refs.data.getDOMNode().value;
+    // fetch("<url to where to post>", {
+    //     method: "POST",
+    //     body: 'data'
+    // }).then(this.handleRedirect);
+  }
+
   render() {
     return(
       <div style={this.state.contactSection} className="contact-section">
-        <form action="/" method="post">
+        <form>
           <div className="form-section">
-            <div className="form-left">
-              <h1>first name</h1>
-            </div>
-            <div className="form-right">
-              <input className="input" type="text" name="firstName" />
-            </div>
-          </div>
-          <div className="form-section">
-            <div className="form-left">
-              <h1>last name</h1>
-            </div>
-            <div className="form-right">
-              <input className="input" type="text" name="lastName" />
-            </div>
-          </div>
-          <div className="form-section">
-            <div className="form-left">
-              <h1>email</h1>
-            </div>
-            <div className="form-right">
-              <input className="input" type="text" name="email" />
-            </div>
-          </div>
-          <div className="form-section">
-            <div className="form-left message">
-              <h1>message</h1>
-            </div>
-            <div className="form-right">
+            <div className="form-section-inputs">
+              <label>first name*</label>
+              <input type="text" name="firstName"/>
+              <label>last name</label>
+              <input type="text" name="lastName"/>
+              <label>email*</label>
+              <input type="text" name="email"/>
+              <label>message*</label>
               <textarea name="message" ows="8" cols="80"></textarea>
             </div>
-          </div>
-          <div className="form-section">
-            <div className="form-left message">
-              <h1></h1>
-            </div>
-            <div className="form-right">
-              <input type="submit" value="Send" />
+            <div className="form-section-submit">
+              <input onClick={this.handleSubmit} className="submit" type="submit" value="send" />
             </div>
           </div>
         </form>

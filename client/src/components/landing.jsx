@@ -1,67 +1,93 @@
 import React from 'react';
 import Nav from './nav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
-
-library.add(fab);
+import { ContentContext } from '../contexts/contentContext';
 
 class Landing extends React.Component {
+  static contextType = ContentContext;
   constructor() {
     super();
     this.state = {
-      landingRight: {
-        display: 'none'
-      },
-      arrow: {
-        display: 'none'
-      }
+
     }
   }
 
-  animateLanding() {
-    this.setState({
-      landing: {
-        height: 'auto'
-      },
-      landingH1: {
-        fontSize: '10vw'
-      },
-      landingH3: {
-        fontSize: '5vw'
-      },
-      landingRight: {
-        display: 'block'
-      },
-      icons: {
-        opacity: 0,
-      },
-    })
-    setTimeout(() => {
+  handleLanding() {
+    if (this.context.landing) {
       this.setState({
-        icons: {
-          opacity: 1,
+        landing: false,
+        landingH1: {
+          fontSize: '8vw'
+        },
+        landingH3: {
+          fontSize: '8vh'
+        },
+      });
+      setTimeout(() => {
+        this.setState({
+          label: "work",
+          nav: {
+            height: '1.3em',
+            display: 'flex',
+            flexDirection: 'row',
+            opacity: '1'
+          },
+          landingRight: {
+            display: 'block'
+          },
+          landingHeight: {
+            height: 'auto'
+          },
+          landingH1: {
+            fontSize: '8vw'
+          },
+          landingH3: {
+            color: "#EDFD5D",
+            fontSize: '8vh'
+          },
+          content: {
+            backgroundColor: "#EDFD5D",
+            height: "auto"
+          }
+        })
+      }, 1100);
+    } else {
+      this.setState({
+        landing: true,
+        label: "web developer",
+        landingRight: {
+          display: 'none'
+        },
+        landingHeight: {
+          height: 'auto'
+        },
+        landingH1: {
+          fontSize: '35vh'
+        },
+        landingH3: {
+          color: "white",
+          fontSize: '15vh'
+        },
+        content: {
+          height: "auto"
+        },
+        arrow: {
+          display: 'none'
         }
-      })
-    }, 1100);
+      });
+    }
   }
 
   render() {
     return(
-      <div className="landing" style={this.state.landing}>
+      <div className="landing" style={this.props.globalState.landingHeight}>
         <div className="landing-top">
-          <div className="landing-left" onClick={(event) => { this.props.handleLanding(); this.animateLanding();}}>
-            <h1 style={this.state.landingH1}>jason</h1>
-            <h1 style={this.state.landingH1}>rowland/</h1>
+          <div className="landing-left" onClick={(event) => { this.props.handleLanding();}}>
+            <h1 style={this.props.globalState.landingH1}>jason</h1>
+            <h1 style={this.props.globalState.landingH1}>rowland/</h1>
           </div>
-          <div className="landing-right" style={this.state.landingRight}>
-            <div style={this.state.icons}>
+          <div className="landing-right" style={this.props.globalState.landingRight}>
+            <div>
               <Nav nav={this.props.globalState.nav}  handleNavClick={this.props.handleNavClick} />
-              <div className="landing-icons">
-                <a href="https://github.com/jasonrowland86" target="blank"><FontAwesomeIcon className="icon" size="2x" icon={['fab', 'github']} /></a>
-                <a href="https://www.linkedin.com/in/jason-rowland86/" target="blank"><FontAwesomeIcon className="icon" size="2x" icon={['fab', 'linkedin']} /></a>
-              </div>
             </div>
           </div>
         </div>
@@ -70,7 +96,7 @@ class Landing extends React.Component {
             <h3 style={this.props.globalState.landingH3}>{this.props.globalState.label}</h3>
           </div>
           <div className="landing-bottom-right" style={this.props.globalState.arrow}>
-            <FontAwesomeIcon className="icon" size="2x" icon={faArrowAltCircleRight} onClick={this.props.handleNextClick} />
+            <h2 onClick={this.props.handleNextClick}>></h2>
           </div>
         </div>
       </div>
