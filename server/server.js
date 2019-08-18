@@ -23,10 +23,10 @@ app.post('/', (req, res) => {
 
   if(req.body.firstName === '' || req.body.email === '' || req.body.message === '') {
       // res.redirect('/');
-      res.send('message not sent');
-      // res.render('index', {
-      //   message: "Message not sent, missing field",
-      // })
+      // res.send('message not sent');
+      res.render('index', {
+        message: "Message not sent, missing field",
+      })
     } else {
       console.log("Message sent from " + req.body.firstName + " " + req.body.lastName);
       let mailOptions = {

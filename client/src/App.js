@@ -2,185 +2,74 @@ import React, { Component } from 'react';
 import './reset.css';
 import './App.css';
 import Landing from './components/landing';
-import Content from './components/content';
+// import Content from './components/content';
+import Work from './components/work';
+import About from './components/about';
+import Contact from './components/contact';
+import Project from './components/project';
 // import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import projects from './projects.js';
 import ContentContextProvider from './contexts/contentContext';
-
-let projectLabels = [];
-projectLabels = projects.map((project) =>(
-  project.data.name
-))
-
-console.log(projectLabels);
+// import { ContentContext } from './contexts/contentContext';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import projects from './projects.js';
 
 class App extends Component {
+
   constructor() {
     super();
     this.state = {
-      landing: true,
-      content: {
-        backgroundColor: "#EDFD5D",
-      },
-      label: 'web developer',
-      arrow: {
-        display: 'none'
-      }
+      landing: false,
+      subtitle: 'web developer'
     }
-    this.handleLanding = this.handleLanding.bind(this);
-    this.handleNavClick = this.handleNavClick.bind(this);
-    this.handleProjectView = this.handleProjectView.bind(this);
-    this.handleNextClick = this.handleNextClick.bind(this);
+    this.toggleLanding = this.toggleLanding.bind(this);
   }
 
-  handleLanding() {
-    if (this.state.landing) {
+  componentDidMount() {
+    if (window.location.pathname === '/') {
       this.setState({
-        landing: false,
-        landingH1: {
-          fontSize: '8vw'
-        },
-        landingH3: {
-          fontSize: '8vh'
-        },
-      });
-      setTimeout(() => {
-        this.setState({
-          label: "work",
-          nav: {
-            height: '1.3em',
-            display: 'flex',
-            flexDirection: 'row',
-            opacity: '1'
-          },
-          landingRight: {
-            display: 'block'
-          },
-          landingHeight: {
-            height: 'auto'
-          },
-          landingH1: {
-            fontSize: '8vw'
-          },
-          landingH3: {
-            color: "#EDFD5D",
-            fontSize: '8vh'
-          },
-          content: {
-            backgroundColor: "#EDFD5D",
-            height: "auto"
-          }
-        })
-      }, 1100);
+        subtitle: 'web developer'
+      })
     } else {
       this.setState({
-        landing: true,
-        label: "web developer",
-        landingRight: {
-          display: 'none'
-        },
-        landingHeight: {
-          height: 'auto'
-        },
-        landingH1: {
-          fontSize: '35vh'
-        },
-        landingH3: {
-          color: "white",
-          fontSize: '15vh'
-        },
-        content: {
-          height: "auto"
-        },
-        arrow: {
-          display: 'none'
-        }
-      });
-    }
-  }
-
-  handleNavClick(e) {
-   e.preventDefault();
-   this.setState({
-     content: {
-       backgroundColor: e.target.id,
-       height: "auto"
-     },
-     label: e.target.attributes.label.value,
-     landingH3: {
-       color: e.target.id,
-       fontSize: '5vw'
-     },
-     arrow: {
-       display: 'none'
-     }
-   })
-  }
-
-  handleProjectView(e) {
-    e.preventDefault();
-    this.setState({
-      projectSection: {
-        opacity: 0,
-        transition: 'all .3s ease-in',
-      }
-    })
-    let event = e.target
-    console.log(e);
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    setTimeout(() => {
-      console.log(event);
-      this.setState({
-        content: {
-          backgroundColor: event.id,
-          height: "auto"
-        },
-        label: event.attributes.label.value,
-        landingH3: {
-          color: event.id,
-          fontSize: '5vw'
-        },
-        arrow: {
-          display: 'flex'
-        },
-        projectSection: {
-          opacity: 1,
-          transition: 'all .3s ease-in',
-        }
+        subtitle: window.location.pathname.slice(1)
       })
-    }, 500)
+    }
   }
 
-  handleNextClick(e) {
-    console.log('arrow clicked');
-    let next;
-    for (let i = 0; i <= projectLabels.length; i++) {
-      if (this.state.label === projectLabels[i]) {
-        next = projectLabels[i + 1];
-      }
-    }
-    for (let i = 0; i <= projectLabels.length; i++) {
-      if (next === projectLabels[projectLabels.length - 1]) {
-        next = projectLabels[0];
-      }
-    }
-    e.preventDefault();
+  toggleLanding() {
     this.setState({
-      label: next,
-      projectSection: {
-        opacity: 0,
-        transition: 'all .3s ease-in',
-      }
+      landing: !this.state.landing
     })
+  }
+
+  handleContent() {
+    if (this.state.landing) {
+      return <div className="content">
+        <Switch>
+          <Route path="/" exact component={Work} />
+          <Route path="/work" exact component={Work} />
+          <Route path="/about" exact component={About} />
+          <Route path="/contact" exact component={Contact} />
+          {projects.map((project) =>(
+            <Route key={project.data.name} path={'/work/' + project.data.name.replace(/\s/g, '').toLowerCase()} render={(props) => <Project project={project}/>} />
+          ))}
+          <Route component={Work} />
+        </Switch>
+      </div>
+    } else {
+      return <div></div>
+    }
   }
 
   render() {
     return (
       <div className="App">
+      <Router>
         <ContentContextProvider>
-          <Landing globalState={this.state} handleLanding={this.handleLanding} handleNavClick={this.handleNavClick} handleNextClick={this.handleNextClick}/>
-          <Content globalState={this.state} landing={this.state.landing} contentBackground={this.state.contentBackground} handleProjectView={this.handleProjectView}/>
+          <Landing toggleLanding={this.toggleLanding}/>
+          {this.handleContent()}
         </ContentContextProvider>
+        </Router>
       </div>
     );
   }

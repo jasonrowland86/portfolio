@@ -1,11 +1,10 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { fab } from '@fortawesome/free-brands-svg-icons';
+import { ContentContext } from '../contexts/contentContext';
+import { Link } from "react-router-dom";
 
-// library.add(fab);
 
 class Nav extends React.Component {
+  static contextType = ContentContext;
   constructor() {
     super();
     this.state = {
@@ -16,9 +15,9 @@ class Nav extends React.Component {
   render() {
     return(
       <div className="nav" style={this.props.nav}>
-        <div className="work-tab" id="#EDFD5D" label="work" onClick={this.props.handleNavClick}></div>
-        <div className="about-tab" id="#70DBFB" label="about" onClick={this.props.handleNavClick}></div>
-        <div className="contact-tab" id="#FF7DEE" label="contact" onClick={this.props.handleNavClick}></div>
+        <div className="work-tab" id="#EDFD5D" label="work" ><Link to="/work"><div className="nav-link"></div></Link></div>
+        <div className="about-tab" id="#70DBFB" label="about" ><Link to="/about"><div className="nav-link"></div></Link></div>
+        <div className="contact-tab" id="#FF7DEE" label="contact" ><Link to="/contact"><div className="nav-link"></div></Link></div>
       </div>
     )
   }

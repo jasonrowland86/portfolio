@@ -1,6 +1,15 @@
 import React from 'react';
 import Nav from './nav';
 import { ContentContext } from '../contexts/contentContext';
+import projects from '../projects.js';
+import { Link } from "react-router-dom";
+
+let projectLabels = [];
+projectLabels = projects.map((project) =>(
+  project.data.name
+))
+
+console.log(window.location.pathname);
 
 class Landing extends React.Component {
   static contextType = ContentContext;
@@ -13,18 +22,17 @@ class Landing extends React.Component {
 
   handleLanding() {
     if (this.context.landing) {
+      this.context.toggleLanding();
       this.setState({
-        landing: false,
         landingH1: {
           fontSize: '8vw'
         },
         landingH3: {
-          fontSize: '8vh'
+          fontSize: '5vw'
         },
       });
       setTimeout(() => {
         this.setState({
-          label: "work",
           nav: {
             height: '1.3em',
             display: 'flex',
@@ -37,23 +45,16 @@ class Landing extends React.Component {
           landingHeight: {
             height: 'auto'
           },
-          landingH1: {
-            fontSize: '8vw'
-          },
-          landingH3: {
-            color: "#EDFD5D",
-            fontSize: '8vh'
-          },
           content: {
             backgroundColor: "#EDFD5D",
             height: "auto"
           }
         })
-      }, 1100);
+      }, 400);
     } else {
+      this.context.toggleLanding();
+      this.context.toggleLandingH3();
       this.setState({
-        landing: true,
-        label: "web developer",
         landingRight: {
           display: 'none'
         },
@@ -64,40 +65,55 @@ class Landing extends React.Component {
           fontSize: '35vh'
         },
         landingH3: {
-          color: "white",
-          fontSize: '15vh'
-        },
-        content: {
-          height: "auto"
-        },
-        arrow: {
-          display: 'none'
+          fontSize: '10vw'
         }
       });
     }
   }
 
+  handleArrow() {
+    console.log(this.context);
+    let next;
+    for (let i = 0; i <= projectLabels.length; i++) {
+      if (this.context.label === projectLabels[i]) {
+        next = projectLabels[i + 1];
+      }
+    }
+    for (let i = 0; i <= projectLabels.length; i++) {
+      if (next === projectLabels[projectLabels.length - 1]) {
+        next = projectLabels[0];
+      }
+    }
+    if (this.context.label !== 'web developer' && this.context.label !== "work" && this.context.label !== "about" && this.context.label !== "contact") {
+      return <div className="landing-bottom-right" style={this.state.arrow}>
+        <h2 id="#EDFD5D" label={next}><Link to={'/work/' + next.replace(/\s/g, '').toLowerCase()} >></Link></h2>
+      </div>
+    } else {
+      return <div className="landing-bottom-right"></div>
+    }
+  }
+
   render() {
     return(
-      <div className="landing" style={this.props.globalState.landingHeight}>
+      <div className="landing" style={this.state.landingHeight}>
         <div className="landing-top">
-          <div className="landing-left" onClick={(event) => { this.props.handleLanding();}}>
-            <h1 style={this.props.globalState.landingH1}>jason</h1>
-            <h1 style={this.props.globalState.landingH1}>rowland/</h1>
+          <div className="landing-left" label="web developer" onClick={() => { this.handleLanding(); this.props.toggleLanding(); }}>
+            <h1 style={this.state.landingH1}>jason</h1>
+            <h1 style={this.state.landingH1}>rowland/</h1>
           </div>
-          <div className="landing-right" style={this.props.globalState.landingRight}>
+          <div className="landing-right" style={this.state.landingRight}>
             <div>
-              <Nav nav={this.props.globalState.nav}  handleNavClick={this.props.handleNavClick} />
+              <Nav nav={this.state.nav} />
             </div>
           </div>
         </div>
         <div className="landing-bottom">
           <div className="landing-bottom-left">
-            <h3 style={this.props.globalState.landingH3}>{this.props.globalState.label}</h3>
+            <div style={this.context.landingH3}>
+              <h3 style={this.state.landingH3}>{this.context.label}</h3>
+            </div>
           </div>
-          <div className="landing-bottom-right" style={this.props.globalState.arrow}>
-            <h2 onClick={this.props.handleNextClick}>></h2>
-          </div>
+          {this.handleArrow()}
         </div>
       </div>
     )

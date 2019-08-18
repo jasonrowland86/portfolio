@@ -3,8 +3,10 @@ import Work from './work';
 import About from './about';
 import Contact from './contact';
 import Project from './project';
+import { ContentContext } from '../contexts/contentContext';
 
 class Content extends React.Component {
+  static contextType = ContentContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -12,42 +14,30 @@ class Content extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.fadeIn();
-  // }
-  //
-  // fadeIn() {
-  //   setTimeout(() => {
-  //     this.setState({
-  //       contentSection: {
-  //         opacity: 1,
-  //         transition: "all .3s ease-in"
-  //       }
-  //     })
-  //   }, 150);
-  // }
-
   handleContent() {
-    if (this.props.globalState.label === "work") {
-      return <Work handleProjectView={this.props.handleProjectView}/>
-    } else if (this.props.globalState.label === "about") {
+    console.log(this.context);
+    if (this.context.label === "work") {
+      console.log('work!');
+      return <Work />
+    } else if (this.context.label === "about") {
       return <About />
-    } else if (this.props.globalState.label === "contact") {
+    } else if (this.context.label === "contact") {
       return <Contact />
-    } else if (this.props.globalState.label !== "contact" && this.props.globalState.label !== "about" && this.props.globalState.label !== "work" && this.props.globalState.label !== "web developer") {
+    } else if (this.context.label !== "contact" && this.context.label !== "about" && this.context.label !== "work" && this.context.label !== "web developer") {
       console.log('project!');
-      return <Project project={this.props.globalState.label} globalState={this.props.globalState}/>
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+      return <Project project={this.context.label} />
     }
   }
 
   render() {
-    if (this.props.globalState.landing) {
+    if (this.context.landing) {
       return(
         <div></div>
       )
     } else {
       return(
-        <div className="content" style={this.props.globalState.content}>
+        <div className="content" style={this.context.content}>
           {this.handleContent()}
         </div>
       )

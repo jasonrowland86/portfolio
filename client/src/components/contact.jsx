@@ -1,21 +1,26 @@
 import React from 'react';
+import { ContentContext } from '../contexts/contentContext';
 // import {
 //   GoogleReCaptchaProvider,
 //   GoogleReCaptcha
 // } from 'react-google-recaptcha-v3';
 
 class Contact extends React.Component {
+  static contextType = ContentContext;
   constructor() {
     super();
     this.state = {
       contactSection: {
         opacity: 0,
         transition: "all .3s ease-in"
-      }
+      },
+      label: 'contact',
+      color: '#FF7DEE'
     }
   }
 
   componentDidMount() {
+    this.context.handleLandingTitle(this.state.label, this.state.color);
     this.fadeIn();
   }
 
@@ -24,7 +29,10 @@ class Contact extends React.Component {
       this.setState({
         contactSection: {
           opacity: 1,
-          transition: "all .3s ease-in"
+          transition: "all .3s ease-in",
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1
         }
       })
     }, 150);
@@ -42,24 +50,26 @@ class Contact extends React.Component {
 
   render() {
     return(
-      <div style={this.state.contactSection} className="contact-section">
-        <form>
-          <div className="form-section">
-            <div className="form-section-inputs">
-              <label>first name*</label>
-              <input type="text" name="firstName"/>
-              <label>last name</label>
-              <input type="text" name="lastName"/>
-              <label>email*</label>
-              <input type="text" name="email"/>
-              <label>message*</label>
-              <textarea name="message" ows="8" cols="80"></textarea>
+      <div className="contact-section">
+        <div style={this.state.contactSection}>
+          <form>
+            <div className="form-section">
+              <div className="form-section-inputs">
+                <label>first name*</label>
+                <input type="text" name="firstName"/>
+                <label>last name</label>
+                <input type="text" name="lastName"/>
+                <label>email*</label>
+                <input type="text" name="email"/>
+                <label>message*</label>
+                <textarea name="message" ows="8" cols="80"></textarea>
+              </div>
+              <div className="form-section-submit">
+                <input onClick={this.handleSubmit} className="submit" type="submit" value="send" />
+              </div>
             </div>
-            <div className="form-section-submit">
-              <input onClick={this.handleSubmit} className="submit" type="submit" value="send" />
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     )
   }
