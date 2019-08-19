@@ -9,8 +9,6 @@ projectLabels = projects.map((project) =>(
   project.data.name
 ))
 
-console.log(window.location.pathname);
-
 class Landing extends React.Component {
   static contextType = ContentContext;
   constructor() {
@@ -72,7 +70,6 @@ class Landing extends React.Component {
   }
 
   handleArrow() {
-    console.log(this.context);
     let next;
     for (let i = 0; i <= projectLabels.length; i++) {
       if (this.context.label === projectLabels[i]) {

@@ -299,6 +299,9 @@ a {
   margin-bottom: 3em;
   max-width: 50vw;
 }
+/* .project-images img {
+  margin-bottom: 0;
+} */
 .project-section a {
   color: black;
   /* font-style: italic; */

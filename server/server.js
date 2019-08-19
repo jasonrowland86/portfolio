@@ -7,49 +7,58 @@ const app = express();
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/public')));
+// app.use(express.static('public'));
 
 app.use(bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  console.log(res);
+  res.send('test');
+  // res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  // res.sendFile(path.join(__dirname, '../client/public', 'index.html'));
+  // console.log(res);
+  // res.sendFile('index.html');
+});
+
+app.get('/test', function (req, res) {
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
 const nodemailer = require('./services/nodemailer');
 app.post('/', (req, res) => {
   console.log('post!');
 
-  if(req.body.firstName === '' || req.body.email === '' || req.body.message === '') {
-      // res.redirect('/');
-      // res.send('message not sent');
-      res.render('index', {
-        message: "Message not sent, missing field",
-      })
-    } else {
-      console.log("Message sent from " + req.body.firstName + " " + req.body.lastName);
-      let mailOptions = {
-        from: req.body.email,
-        to: 'jasonrowland86@gmail.com',
-        subject: 'Contact Form Submitted: ' + req.body.firstName + " " + req.body.lastName,
-        text: req.body.message
-      };
-      nodemailer.transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.log("Nodemailer error: " + err);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-      // res.redirect('/');
-      res.json({message: 'sent'});
-      // res.send('message sent');
-      // res.render('index', {
-      //   message: "Thank you, Your message was sent",
-      //   // gmapapikey: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD3ekqZ4vGPCYciZZWNeKYv84VE9BwzKhE"
-      // })
-    }
+  // if(req.body.firstName === '' || req.body.email === '' || req.body.message === '') {
+  //     // res.redirect('/');
+  //     // res.send('message not sent');
+  //     res.render('index', {
+  //       message: "Message not sent, missing field",
+  //     })
+  //   } else {
+  //     console.log("Message sent from " + req.body.firstName + " " + req.body.lastName);
+  //     let mailOptions = {
+  //       from: req.body.email,
+  //       to: 'jasonrowland86@gmail.com',
+  //       subject: 'Contact Form Submitted: ' + req.body.firstName + " " + req.body.lastName,
+  //       text: req.body.message
+  //     };
+  //     nodemailer.transporter.sendMail(mailOptions, (err, info) => {
+  //       if (err) {
+  //         console.log("Nodemailer error: " + err);
+  //       } else {
+  //         console.log('Email sent: ' + info.response);
+  //       }
+  //     });
+  //     // res.redirect('/');
+  //     res.json({message: 'sent'});
+  //     // res.send('message sent');
+  //     // res.render('index', {
+  //     //   message: "Thank you, Your message was sent",
+  //     //   // gmapapikey: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD3ekqZ4vGPCYciZZWNeKYv84VE9BwzKhE"
+  //     // })
+  //   }
 
   // console.log("Message sent from " + req.body.firstName + " " + req.body.lastName);
   // let mailOptions = {

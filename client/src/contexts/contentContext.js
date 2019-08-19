@@ -22,7 +22,7 @@ class ContentContextProvider extends React.Component {
     this.setState({
       content: {
         backgroundColor: e.target.id,
-        height: "auto"
+        // height: "auto"
       },
       label: e.target.attributes.label.value,
       landingH3: {
