@@ -1,6 +1,7 @@
 import React from 'react';
 import { ContentContext } from '../contexts/contentContext';
 import { Link } from "react-router-dom";
+require('../style_sheets/nav.css');
 
 
 class Nav extends React.Component {

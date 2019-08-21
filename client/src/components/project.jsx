@@ -1,6 +1,7 @@
 import React from 'react';
 import projects from '../projects.js';
 import { ContentContext } from '../contexts/contentContext';
+require('../style_sheets/project.css');
 
 class Project extends React.Component {
   static contextType = ContentContext;
@@ -12,7 +13,8 @@ class Project extends React.Component {
         transition: 'all .3s ease-in'
       },
       label: 'work',
-      color: '#EDFD5D'
+      color: '#EDFD5D',
+      prvwImg: {opacity: 0}
     }
   }
 
@@ -36,12 +38,16 @@ class Project extends React.Component {
     }, 250);
   }
 
+  handleImageLoaded() {
+    this.setState({ prvwImg: {opacity: 1} });
+  }
+
   render() {
     let project = projects.filter(project => project.data.name === this.props.project.data.name);
     console.log(project[0]);
     let key = 0;
     let projectImages = project[0].data.images.map((image) => (
-      <img key={key++} className="project-img" src={image} alt=""></img>
+      <img style={this.state.prvwImg} key={key++} className="project-img" src={image} alt="" onLoad={this.handleImageLoaded.bind(this)}></img>
     ));
     return(
       <div className="project-section">

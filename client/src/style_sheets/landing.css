@@ -1,0 +1,61 @@
+.landing {
+  font-family: 'Ubuntu Mono', monospace;
+  text-align: left;
+  background-color: black;
+  color: white;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  transition: all .3s ease-in-out;
+}
+.landing-top {
+  display: flex;
+  flex-direction: row;
+  padding-left: 1em;
+}
+.landing-bottom {
+  padding-left: 1em;
+  padding-bottom: .5em;
+  display: flex;
+  flex-direction: row;
+}
+.landing-bottom-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding-top: .2em;
+}
+.landing-bottom-right {
+  display: flex;
+}
+.landing-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.landing-left:hover {
+  cursor: default;
+}
+.landing-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 1;
+}
+.landing h1 {
+  font-size: 35vh;
+  transition: font-size 0.5s ease-in-out;
+}
+.landing-bottom h3 {
+  font-size: 10vw;
+  transition: font-size 0.5s ease-in-out;
+}
+.landing-bottom h2 {
+  margin-right: .3em;
+  font-size: 6vw;
+  transition: font-size 0.5s ease-in-out;
+}
+.landing-bottom h2:hover {
+  cursor: pointer;
+}

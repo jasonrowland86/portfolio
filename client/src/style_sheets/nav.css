@@ -1,0 +1,36 @@
+.nav {
+  width: 100%;
+  height: 1em;
+  display: flex;
+  flex-direction: row;
+}
+.nav:hover {
+  cursor: pointer;
+}
+.nav-link {
+  width: 100%;
+  height: 100%;
+}
+.nav-link:hover {
+  cursor: pointer;
+}
+.work-tab {
+  flex: 1;
+  background-color: #EDFD5D;
+}
+.about-tab {
+  flex: 1;
+  background-color: #70DBFB;
+  /* background-color: #F0913C; */
+}
+.contact-tab {
+  flex: 1;
+  background-color: #FF7DEE;
+}
+.work-section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  background-color: #EDFD5D;
+  padding-top: 3em;
+}

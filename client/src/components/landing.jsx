@@ -3,6 +3,7 @@ import Nav from './nav';
 import { ContentContext } from '../contexts/contentContext';
 import projects from '../projects.js';
 import { Link } from "react-router-dom";
+require('../style_sheets/landing.css');
 
 let projectLabels = [];
 projectLabels = projects.map((project) =>(
@@ -30,22 +31,18 @@ class Landing extends React.Component {
         },
       });
       setTimeout(() => {
+        // this.context.toggleLandingH3();
         this.setState({
           nav: {
             height: '1.3em',
             display: 'flex',
             flexDirection: 'row',
-            opacity: '1'
           },
           landingRight: {
             display: 'block'
           },
           landingHeight: {
             height: 'auto'
-          },
-          content: {
-            backgroundColor: "#EDFD5D",
-            height: "auto"
           }
         })
       }, 400);
@@ -71,17 +68,19 @@ class Landing extends React.Component {
 
   handleArrow() {
     let next;
-    for (let i = 0; i <= projectLabels.length; i++) {
+    for (let i = 0; i < projectLabels.length; i++) {
       if (this.context.label === projectLabels[i]) {
-        next = projectLabels[i + 1];
-      }
-    }
-    for (let i = 0; i <= projectLabels.length; i++) {
-      if (next === projectLabels[projectLabels.length - 1]) {
-        next = projectLabels[0];
+        if (projectLabels[i] === 'Simon') {
+          next = projectLabels[0];
+          console.log('if ' + next);
+        } else {
+          next = projectLabels[i + 1];
+          console.log('else ' + next);
+        }
       }
     }
     if (this.context.label !== 'web developer' && this.context.label !== "work" && this.context.label !== "about" && this.context.label !== "contact") {
+      console.log(next);
       return <div className="landing-bottom-right" style={this.state.arrow}>
         <h2 id="#EDFD5D" label={next}><Link to={'/work/' + next.replace(/\s/g, '').toLowerCase()} >></Link></h2>
       </div>

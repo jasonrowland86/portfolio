@@ -1,5 +1,6 @@
 import React from 'react';
 import { ContentContext } from '../contexts/contentContext';
+require('../style_sheets/about.css');
 
 class About extends React.Component {
   static contextType = ContentContext;

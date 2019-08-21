@@ -2,6 +2,7 @@ import React from 'react';
 import projects from '../projects.js';
 import { ContentContext } from '../contexts/contentContext';
 import { Link } from "react-router-dom";
+require('../style_sheets/work.css');
 
 class Work extends React.Component {
   static contextType = ContentContext;
@@ -13,7 +14,10 @@ class Work extends React.Component {
         transition: "all .3s ease-in"
       },
       label: 'work',
-      color: '#EDFD5D'
+      color: '#EDFD5D',
+      prvwImg: {
+        opacity: 0
+      }
     }
   }
 
@@ -35,6 +39,10 @@ class Work extends React.Component {
     }, 150);
   }
 
+  handleImageLoaded() {
+    this.setState({ prvwImg: {opacity: 1} });
+  }
+
   render() {
     return(
       <div className="work-section">
@@ -48,8 +56,8 @@ class Work extends React.Component {
                   <h2 id="#EDFD5D" label={project.data.name} onClick={this.context.handleLabel} className="overlay-h2">{project.data.technologies}</h2>
                 </div>
 
-                <div className="project-preview-image" id="#EDFD5D" label={project.data.name} >
-                  <img id="#EDFD5D" label={project.data.name}  className="overlay-img" src={project.data.images[0]} alt=""></img>
+                <div style={this.state.prvwImg} className="project-preview-image" id="#EDFD5D" label={project.data.name} >
+                  <img id="#EDFD5D" label={project.data.name}  className="overlay-img" src={project.data.images[0]} alt="" onLoad={this.handleImageLoaded.bind(this)}></img>
                 </div>
               </div>
 

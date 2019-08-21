@@ -1,6 +1,7 @@
 import React from 'react';
 import { ContentContext } from '../contexts/contentContext';
 import axios from "axios";
+require('../style_sheets/contact.css');
 // import {
 //   GoogleReCaptchaProvider,
 //   GoogleReCaptcha
@@ -16,7 +17,12 @@ class Contact extends React.Component {
         transition: "all .3s ease-in"
       },
       label: 'contact',
-      color: '#FF7DEE'
+      color: '#FF7DEE',
+      response: '.',
+      showResponse: {
+        opacity: 0
+      },
+      submitButton: true
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,19 +31,6 @@ class Contact extends React.Component {
   componentDidMount() {
     this.context.handleLandingTitle(this.state.label, this.state.color);
     this.fadeIn();
-    this.callBackEnd();
-  }
-
-  callBackEnd() {
-    console.log('call backend');
-    axios({
-            method: "GET",
-            url:"/test",
-        }).then((response)=>{
-            console.log(response);
-        }).catch((response)=>{
-            console.log(response);
-        })
   }
 
   fadeIn() {
@@ -64,27 +57,89 @@ class Contact extends React.Component {
      });
   }
 
+  emailIsValid (email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
   handleSubmit(e) {
     console.log('handle submit');
-    axios({
-            method: "POST",
-            url:"/",
-            data: {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                messsage: this.state.message
-            }
-        }).then((response)=>{
-            console.log(response);
-            if (response.data.msg === 'success'){
-                alert("Message Sent.");
-            }else if(response.data.msg === 'fail'){
-                alert("Message failed to send.")
-            }
-        }).catch((response)=>{
-            console.log(response);
-        })
+    e.preventDefault();
+    if (this.state.firstName !== "" && this.state.email !== "" && this.state.message !== "") {
+      if (this.emailIsValid(this.state.email)) {
+        this.setState({submitButton: false});
+        axios({
+                method: "POST",
+                url:"/",
+                data: {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.email,
+                    messsage: this.state.message
+                }
+            }).then((response)=>{
+                console.log(response);
+                if (response.status === 200){
+                    this.clearForm();
+                    this.showResponse(response);
+                }else {
+                    this.setState({submit: true});
+                    this.showResponse(response);
+                }
+            }).catch((response)=>{
+                this.clearForm();
+                this.showResponse(response);
+            })
+      } else {
+        let response = {data: {message: "Email format invalid"}}
+        this.showResponse(response);
+      }
+    } else {
+      let response = {data: {message: "Missing field"}}
+      this.showResponse(response);
+    }
+  }
+
+  showResponse(response) {
+    this.setState({
+      response: response.data.message,
+      showResponse: {
+        opacity: 1
+      }
+    })
+    setTimeout(() => {
+      this.removeResponse();
+    }, 3000)
+  }
+
+  removeResponse() {
+    this.setState({
+      showResponse: {
+        opacity: 0
+      },
+    })
+  }
+
+  clearForm() {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      message: '',
+      submitButton: true
+    })
+    let inputs = document.querySelectorAll('.input');
+    console.log(inputs);
+    for(let i=0; i<inputs.length; i++) {
+      inputs[i].value = "";
+    }
+  }
+
+  handleSubmitButton() {
+    if (!this.state.submitButton) {
+      return <div className="submit sub"><div className="submit-loading"><div>.</div><div>.</div><div>.</div></div></div>
+    } else {
+      return <input className="submit" type="submit" value="send" />
+    }
   }
 
   render() {
@@ -94,17 +149,18 @@ class Contact extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className="form-section">
               <div className="form-section-inputs">
+                <div className="response" style={this.state.showResponse}>{this.state.response}</div>
                 <label>first name*</label>
-                <input type="text" onChange={this.handleChange} name="firstName"/>
+                <input className="input" type="text" onChange={this.handleChange} name="firstName"/>
                 <label>last name</label>
-                <input type="text" onChange={this.handleChange} name="lastName"/>
+                <input className="input" type="text" onChange={this.handleChange} name="lastName"/>
                 <label>email*</label>
-                <input type="text" onChange={this.handleChange} name="email"/>
+                <input className="input" type="text" onChange={this.handleChange} name="email"/>
                 <label>message*</label>
-                <textarea onChange={this.handleChange} name="message" ows="8" cols="80"></textarea>
+                <textarea className="input" onChange={this.handleChange} name="message" ows="8" cols="80"></textarea>
               </div>
               <div className="form-section-submit">
-                <input className="submit" type="submit" value="send" />
+                {this.handleSubmitButton()}
               </div>
             </div>
           </form>

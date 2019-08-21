@@ -1,0 +1,124 @@
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background-color: #FF7DEE;
+  padding-top: 1em;
+}
+.contact-section-title {
+  display: flex;
+  flex-direction: row;
+}
+.contact-section-title h1 {
+  margin-bottom: .5em;
+  font-size: 3vw;
+}
+.form-section {
+  width: 60vw;
+}
+form {
+  width: 100%;
+}
+.form-section-inputs input {
+  font-size: 1.5em;
+  padding: .3em;
+  margin-bottom: 1em;
+  border-style: none;
+  border: 1px solid black;
+  background-color: #FF7DEE;
+  font-family: 'Ubuntu Mono', monospace;
+}
+textarea {
+  height: 10vw;
+  font-size: 2vw;
+  background-color: #FF7DEE;
+  font-family: 'Ubuntu Mono', monospace;
+  border: 1px solid black;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.form-section-inputs {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+.form-section-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1em;
+}
+.form-section-submit input {
+  font-size: 1em;
+  margin-bottom: 2em;
+  padding:  .3em .5em;
+}
+label {
+  margin-bottom: .5em;
+  font-weight: bold;
+  font-size: 1em;
+}
+.submit {
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: bold;
+  background-color: #FF7DEE;
+  border: 1px solid black;
+  padding: .3em .5em;
+  text-align: center;
+  width: 10em;
+  transition: all .3s ease-in-out;
+  color: black;
+}
+.submit:hover {
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.9);
+  border-color: white;
+}
+
+@keyframes blink {
+    0% {
+      opacity: .2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: .2;
+    }
+}
+.submit-loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.submit-loading div {
+    animation-name: blink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+.submit div:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.submit div:nth-child(3) {
+    animation-delay: .4s;
+}
+.sub {
+  margin-bottom: 2em;
+}
+.response {
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.9);
+  padding: .3em 1em;
+  font-weight: bold;
+  transition: all .3s ease-out;
+}

@@ -17,19 +17,19 @@ class ContentContextProvider extends React.Component {
     });
   }
 
-  handleLabel = (e) => {
-    e.preventDefault();
-    this.setState({
-      content: {
-        backgroundColor: e.target.id,
-        // height: "auto"
-      },
-      label: e.target.attributes.label.value,
-      landingH3: {
-        color: e.target.id,
-      }
-    })
-  }
+  // handleLabel = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     content: {
+  //       backgroundColor: e.target.id,
+  //       // height: "auto"
+  //     },
+  //     label: e.target.attributes.label.value,
+  //     landingH3: {
+  //       color: e.target.id,
+  //     }
+  //   })
+  // }
 
   toggleLandingH3 = () => {
     if (this.state.label === "web developer") {
