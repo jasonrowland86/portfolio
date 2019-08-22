@@ -46,7 +46,6 @@ class Work extends React.Component {
   render() {
     return(
       <div className="work-section">
-      <div>k</div>
         <div style={this.state.workSection}>
           {projects.map((project) =>(
             <div key={project.data.name} className="project-preview" id="#EDFD5D" label={project.data.name} >
