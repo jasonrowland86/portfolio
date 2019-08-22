@@ -30,9 +30,7 @@ class Project extends React.Component {
       this.setState({
         projectSection: {
           opacity: 1,
-          transition: 'all .3s ease-in',
-          display: 'flex',
-          flex: 1,
+          transition: 'all .3s ease-in'
         }
       })
     }, 250);

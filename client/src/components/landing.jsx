@@ -57,7 +57,7 @@ class Landing extends React.Component {
           height: 'auto'
         },
         landingH1: {
-          fontSize: '35vh'
+          fontSize: '23vw'
         },
         landingH3: {
           fontSize: '10vw'

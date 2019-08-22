@@ -9,6 +9,10 @@
   flex:1;
   transition: all .3s ease-in;
 }
+.about-section-div {
+  display: flex;
+  flex-direction: row;
+}
 .about-section .project-skills {
   display: flex;
   flex-direction: row;
@@ -26,9 +30,29 @@
 }
 .about-image {
   padding: 0 2em;
-  text-align: center;
+  /* text-align: center; */
 }
 .profile-img {
   max-width: 40vw;
   min-width: 40vw;
+}
+@media only screen and (max-width : 650px) {
+  .about-section-div {
+    display: flex;
+    flex-direction: column;
+  }
+  .project-links {
+    margin-bottom: 2em;
+  }
+  .about-image {
+    padding: 0 1em;
+    text-align: left;
+  }
+  .profile-img {
+    min-width: 70vw;
+  }
+  .about-text {
+    flex: 0;
+    padding-right: 3em;
+  }
 }

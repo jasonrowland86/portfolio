@@ -1,7 +1,6 @@
 .project {
   width: 100vw;
   display: flex;
-  flex-direction: row;
 }
 .project-info {
   flex: 1;
@@ -48,4 +47,28 @@
   background-color: rgba(255,255,255,0.9);
   color: black;
   border-color: white;
+}
+/* @media only screen and (min-width : 650px) {
+  .project {
+    display: flex;
+  }
+  .project-img {
+    width: 80vw;
+  }
+} */
+@media only screen and (max-width : 650px) {
+  .project-images {
+    margin: 0;
+  }
+  .project-images img {
+    max-width: 80vw;
+    padding: 0;
+  }
+  .project {
+    display: block;
+  }
+  .project-info {
+    margin-bottom: 2em;
+    padding-right: 3em;
+  }
 }

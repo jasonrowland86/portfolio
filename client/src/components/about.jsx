@@ -26,8 +26,6 @@ class About extends React.Component {
       this.setState({
         aboutSection: {
           opacity: 1,
-          display: 'flex',
-          flexDirection: 'row',
           paddingBottom: '3em',
           transition: "all .3s ease-in"
         }
@@ -38,7 +36,7 @@ class About extends React.Component {
   render() {
     return(
       <div className="about-section">
-        <div style={this.state.aboutSection}>
+        <div className="about-section-div" style={this.state.aboutSection}>
 
           <div className="about-text">
             <p>

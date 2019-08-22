@@ -22,7 +22,6 @@ a {
   transition: all .3s ease-in-out;
 }
 
-
 @media only screen and (max-width : 500px) {
   .landing-bottom h3 {
     /* margin-left: -.3em; */
@@ -30,7 +29,6 @@ a {
     transition: font-size 0.5s ease-in-out;
   }
   .project {
-    flex-direction: column;
     padding-right: 1em;
   }
   .project-images img {
@@ -58,6 +56,9 @@ a {
     padding-right: 1.5em;
     padding-left: 1em;
   }
+  .section-container {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width : 400px) {
@@ -67,28 +68,20 @@ a {
   .landing h3 {
     font-size: 15vw;
   }
-  .landing-icons {
-    display: flex;
-    margin-top: 0;
-  }
-  .icon {
-    margin-right: .3em;
-    margin-top: .3em;
-  }
-  .about-section {
+  /* .about-section {
     display: flex;
     flex-direction: column;
-  }
-  .about-text {
+  } */
+  /* .about-text {
     padding-left: 1em;
-  }
-  .about-image {
+  } */
+  /* .about-image {
     padding-left: 1em;
     margin-bottom: 3em;
-  }
-  .profile-img {
+  } */
+  /* .profile-img {
     border-radius: 5px;
-  }
+  } */
 
   .project-preview {
     display: flex;
@@ -118,10 +111,14 @@ a {
     padding: 0;
     padding-right: 3em;
   }
-  .project-img {
+  /* .project-img {
     max-width: 85vw;
-  }
+  } */
   .form-section {
     flex-direction: column;
   }
+  /* .project {
+    display: flex;
+    flex-direction: column;
+  } */
 }

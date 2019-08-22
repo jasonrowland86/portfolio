@@ -57,7 +57,14 @@ class Work extends React.Component {
                 </div>
 
                 <div style={this.state.prvwImg} className="project-preview-image" id="#EDFD5D" label={project.data.name} >
-                  <img id="#EDFD5D" label={project.data.name}  className="overlay-img" src={project.data.images[0]} alt="" onLoad={this.handleImageLoaded.bind(this)}></img>
+                  <img
+                    id="#EDFD5D"
+                    label={project.data.name}
+                    className="overlay-img"
+                    src={project.data.images[0]}
+                    alt=""
+                    onLoad={this.handleImageLoaded.bind(this)}>
+                  </img>
                 </div>
               </div>
 

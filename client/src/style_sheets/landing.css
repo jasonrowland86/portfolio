@@ -44,7 +44,7 @@
   flex: 1;
 }
 .landing h1 {
-  font-size: 35vh;
+  font-size: 23vw;
   transition: font-size 0.5s ease-in-out;
 }
 .landing-bottom h3 {
