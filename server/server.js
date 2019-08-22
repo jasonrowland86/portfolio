@@ -16,9 +16,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-app.get('/test', function (req, res) {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 const nodemailer = require('./services/nodemailer');
 app.post('/', (req, res) => {
