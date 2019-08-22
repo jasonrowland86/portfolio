@@ -111,7 +111,7 @@ app.post('/', (req, res) => {
   //       // gmapapikey: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD3ekqZ4vGPCYciZZWNeKYv84VE9BwzKhE"
   //     })
   //   }
-  // });
+  });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
