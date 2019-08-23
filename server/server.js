@@ -16,8 +16,6 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-app.get('/favicon.ico', (req, res) => res.status(204));
-
 const nodemailer = require('./services/nodemailer');
 app.post('/', (req, res) => {
   console.log('post!');
