@@ -44,7 +44,7 @@ class Project extends React.Component {
 
   handleProjectLink(projectLink) {
     if (projectLink === '') {
-      return <a></a>
+      return <div style={{display: "none"}}></div>
     } else {
       return <a href={projectLink} target="blank"><div>View App</div></a>
     }

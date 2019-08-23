@@ -95,6 +95,5 @@ const projects = [
     }
   }
 ]
-console.log('Projects loaded');
 
 export default projects;

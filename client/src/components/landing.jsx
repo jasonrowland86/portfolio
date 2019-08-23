@@ -3,7 +3,7 @@ import Nav from './nav';
 import { ContentContext } from '../contexts/contentContext';
 import projects from '../projects.js';
 import { Link } from "react-router-dom";
-require('../style_sheets/landing.css');
+require('../style_sheets/llanding.css');
 
 let projectLabels = [];
 projectLabels = projects.map((project) =>(
@@ -74,15 +74,12 @@ class Landing extends React.Component {
       if (this.context.label === projectLabels[i]) {
         if (projectLabels[i] === 'Simon') {
           next = projectLabels[0];
-          console.log('if ' + next);
         } else {
           next = projectLabels[i + 1];
-          console.log('else ' + next);
         }
       }
     }
     if (this.context.label !== 'web developer' && this.context.label !== "work" && this.context.label !== "about" && this.context.label !== "contact") {
-      console.log(next);
       return <div className="landing-bottom-right" style={this.state.arrow}>
         <h2 id="#EDFD5D" label={next}><Link to={'/work/' + next.replace(/\s/g, '').toLowerCase()} >></Link></h2>
       </div>
