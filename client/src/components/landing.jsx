@@ -15,7 +15,9 @@ class Landing extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      landingHeight: {
+        height: '100vh'
+      }
     }
   }
 
@@ -57,7 +59,7 @@ class Landing extends React.Component {
           height: 'auto'
         },
         landingH1: {
-          fontSize: '23vw'
+          fontSize: '22vw'
         },
         landingH3: {
           fontSize: '10vw'

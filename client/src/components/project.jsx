@@ -10,7 +10,8 @@ class Project extends React.Component {
     this.state = {
       projectSection: {
         opacity: 0,
-        transition: 'all .3s ease-in'
+        transition: 'all .3s ease-in',
+        flex: 1,
       },
       label: 'work',
       color: '#EDFD5D',

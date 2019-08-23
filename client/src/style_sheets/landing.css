@@ -10,11 +10,13 @@
   transition: all .3s ease-in-out;
 }
 .landing-top {
+  /* height: 70vh; */
   display: flex;
   flex-direction: row;
   padding-left: 1em;
 }
 .landing-bottom {
+  /* height: 30vh; */
   padding-left: 1em;
   padding-bottom: .5em;
   display: flex;
@@ -44,7 +46,7 @@
   flex: 1;
 }
 .landing h1 {
-  font-size: 23vw;
+  font-size: 22vw;
   transition: font-size 0.5s ease-in-out;
 }
 .landing-bottom h3 {

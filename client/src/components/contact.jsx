@@ -15,6 +15,7 @@ class Contact extends React.Component {
       contactSection: {
         opacity: 0,
         transition: "all .3s ease-in",
+        flex: 1,
       },
       label: 'contact',
       color: '#FF7DEE',

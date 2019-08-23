@@ -9,7 +9,8 @@ class About extends React.Component {
     this.state = {
       aboutSection: {
         opacity: 0,
-        transition: "all .3s ease-in"
+        transition: "all .3s ease-in",
+        flex: 1,
       },
       label: 'about',
       color: '#70DBFB',
@@ -31,6 +32,7 @@ class About extends React.Component {
           opacity: 1,
           paddingBottom: '3em',
           transition: "all .3s ease-in",
+          flex: 1,
         }
       })
     }, 150);
