@@ -3,7 +3,7 @@ import Nav from './nav';
 import { ContentContext } from '../contexts/contentContext';
 import projects from '../projects.js';
 import { Link } from "react-router-dom";
-require('../style_sheets/llanding.css');
+require('../style_sheets/landing.css');
 
 let projectLabels = [];
 projectLabels = projects.map((project) =>(
