@@ -32,7 +32,6 @@ class Project extends React.Component {
           opacity: 1,
           transition: 'all .3s ease-in',
           flex: 1,
-          backgroundColor: '#EDFD5D',
         }
       })
     }, 250);

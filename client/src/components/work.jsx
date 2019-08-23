@@ -34,7 +34,7 @@ class Work extends React.Component {
           transition: 'all .3s ease-in',
           display: 'flex',
           flexWrap: 'wrap',
-          backgroundColor: '#EDFD5D',
+          flex: 1,
         }
       })
     }, 150);

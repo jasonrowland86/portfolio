@@ -21,6 +21,7 @@
   width: 100vw;
   background-color: #EDFD5D;
   padding-top: 3em;
+  flex: 1;
 }
 .project-section a {
   color: black;
@@ -66,11 +67,11 @@
     margin: 0;
   }
   .project-images img {
-    max-width: 80vw;
+    max-width: 60vw;
     padding: 0;
   }
   .project {
-    display: block;
+    flex-direction: column;
   }
   .project-info {
     margin-bottom: 2em;

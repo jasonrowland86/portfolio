@@ -41,8 +41,7 @@ class Contact extends React.Component {
           transition: "all .3s ease-in",
           display: 'flex',
           flexDirection: 'column',
-          flex: 1,
-          backgroundColor: '#FF7DEE'
+          flex: 1
         },
         firstName: '',
         lastName: '',

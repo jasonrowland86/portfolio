@@ -31,7 +31,6 @@ class About extends React.Component {
           opacity: 1,
           paddingBottom: '3em',
           transition: "all .3s ease-in",
-          backgroundColor: '#70DBFB',
         }
       })
     }, 150);
