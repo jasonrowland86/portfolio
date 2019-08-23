@@ -1,5 +1,6 @@
 .contact-section {
   display: flex;
+  flex: 1;
   flex-direction: column;
   width: 100vw;
   background-color: #FF7DEE;
@@ -15,6 +16,7 @@
 }
 .form-section {
   width: 60vw;
+  /* height: 100vh; */
 }
 form {
   width: 100%;

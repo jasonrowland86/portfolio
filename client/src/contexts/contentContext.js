@@ -4,7 +4,7 @@ export const ContentContext = createContext();
 
 class ContentContextProvider extends React.Component {
   state = {
-    landing: true,
+    landing: false,
     content: {
       backgroundColor: "#EDFD5D",
     },

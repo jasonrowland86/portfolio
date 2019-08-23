@@ -56,9 +56,6 @@ a {
     padding-right: 1.5em;
     padding-left: 1em;
   }
-  .section-container {
-    flex-direction: column;
-  }
 }
 
 @media only screen and (max-width : 400px) {

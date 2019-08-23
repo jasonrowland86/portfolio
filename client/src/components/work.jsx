@@ -33,7 +33,8 @@ class Work extends React.Component {
           opacity: 1,
           transition: 'all .3s ease-in',
           display: 'flex',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
+          backgroundColor: '#EDFD5D',
         }
       })
     }, 150);
@@ -56,14 +57,14 @@ class Work extends React.Component {
                   <h2 id="#EDFD5D" label={project.data.name} onClick={this.context.handleLabel} className="overlay-h2">{project.data.technologies}</h2>
                 </div>
 
-                <div style={this.state.prvwImg} className="project-preview-image" id="#EDFD5D" label={project.data.name} >
+                <div className="project-preview-image" id="#EDFD5D" label={project.data.name} >
                   <img
                     id="#EDFD5D"
                     label={project.data.name}
                     className="overlay-img"
                     src={project.data.images[0]}
                     alt=""
-                    onLoad={this.handleImageLoaded.bind(this)}>
+                    >
                   </img>
                 </div>
               </div>
@@ -74,8 +75,13 @@ class Work extends React.Component {
                   <h2>{project.data.technologies}</h2>
                 </div>
 
-                <div className="project-preview-image">
-                  <img src={project.data.images[0]} alt=""></img>
+                <div style={this.state.prvwImg} className="project-preview-image">
+                  <img
+                  src={project.data.images[0]}
+                  alt=""
+                  onLoad={this.handleImageLoaded.bind(this)}
+                  >
+                  </img>
                 </div>
               </div>
               </Link>

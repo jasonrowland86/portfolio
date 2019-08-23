@@ -20,7 +20,7 @@ class Landing extends React.Component {
   }
 
   handleLanding() {
-    if (this.context.landing) {
+    if (!this.context.landing) {
       this.context.toggleLanding();
       this.setState({
         landingH1: {

@@ -12,7 +12,10 @@ class About extends React.Component {
         transition: "all .3s ease-in"
       },
       label: 'about',
-      color: '#70DBFB'
+      color: '#70DBFB',
+      prvwImg: {
+        opacity: 0
+      }
     }
   }
 
@@ -27,10 +30,15 @@ class About extends React.Component {
         aboutSection: {
           opacity: 1,
           paddingBottom: '3em',
-          transition: "all .3s ease-in"
+          transition: "all .3s ease-in",
+          backgroundColor: '#70DBFB',
         }
       })
     }, 150);
+  }
+
+  handleImageLoaded() {
+    this.setState({ prvwImg: {opacity: 1} });
   }
 
   render() {
@@ -55,8 +63,8 @@ class About extends React.Component {
             </div>
           </div>
 
-          <div className="about-image">
-            <img className="profile-img" src="profile-pic.jpg" alt="Profile"/>
+          <div style={this.state.prvwImg} className="about-image">
+            <img onLoad={this.handleImageLoaded.bind(this)} className="profile-img" src="profile-pic.jpg" alt="Profile"/>
           </div>
 
         </div>

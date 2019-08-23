@@ -6,11 +6,11 @@
   padding-top: 3em;
   flex: 1;
 }
-.project-section {
+/* .project-section {
   width: 100vw;
   background-color: #EDFD5D;
   padding-top: 3em;
-}
+} */
 .project-preview {
   display: flex;
   flex-direction: column;
